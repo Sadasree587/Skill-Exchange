@@ -1,6 +1,5 @@
 const SwapRequest = require("../models/SwapRequest");
 
-
 // SEND SWAP REQUEST
 const sendSwapRequest = async (req, res) => {
 
