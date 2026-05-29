@@ -1,201 +1,280 @@
-# Skill Exchange Platform — Progress Tracker
-
-## Current Active Phases
-
-### Frontend
-
-Phase 7 — Authentication UI
-
-### Backend
-
-Phase 8 — Protected Routes + Auth Middleware
-
-### System Design
-
-Phase 9 — ER Model & Database Design
+# Skill Exchange Platform — Project Progress Tracker
 
 ---
 
-# Completed Phases
+# 📌 Project Overview
 
-## Phase 1 — Project Planning
+## Project Name
 
-* Project idea finalized
-* Core platform features identified
-* Tech stack decided
+Skill Exchange Platform with Smart Matching
 
----
+## Goal
 
-## Phase 2 — Repository & Collaboration Setup
+A full-stack platform where users can:
 
-* GitHub repository created
-* Branch workflow initialized
-
----
-
-# Frontend Completed Work
-
-## Phase 3 — Frontend Foundation
-
-* React + Vite setup
-* Folder structure setup
-* React Router setup
-* Axios installed
-* Initial pages created
-
-### Completed Pages
-
-* Home page
-* Login page
-* Signup page
-
-### Routing
-
-* /home
-* /login
-* /signup
+* Offer skills
+* Request skills
+* Send swap requests
+* Chat in real time
+* Match based on interests
+* Build collaborative learning connections
 
 ---
 
-# Backend Completed Work
+# 🛠 Tech Stack
 
-## Phase 4 — Backend Foundation
+## Frontend
+
+* React
+* Vite
+* React Router
+* Axios
+* Tailwind CSS (Planned)
+
+## Backend
+
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+* JWT Authentication
+* Socket.io
+
+## Tools
+
+* Postman
+* Git & GitHub
+* MongoDB Atlas
+
+---
+
+# 📌 Current Phase
+
+## Backend Phase 8 — Real-Time Chat System
+
+### Current Subphase
+
+* Socket.io integration
+* Message APIs
+* Real-time messaging
+
+### Status
+
+🟡 In Progress
+
+---
+
+# ✅ Completed Phases
+
+## Phase 1 — Backend Initialization
+
+### Features
 
 * Express setup
 * Nodemon setup
-* MVC folder structure
+* Environment variables
+* MongoDB connection
+
+### Status
+
+✅ Completed
 
 ---
 
-## Phase 5 — Database Connection
+## Phase 2 — Authentication System
 
-* MongoDB Atlas connected
-* dotenv configured
-* mongoose configured
-
----
-
-## Phase 6 — Authentication Backend APIs
+### Features
 
 * User model
 * Signup API
 * Login API
-* bcrypt password hashing
+* Password hashing using bcrypt
 * JWT token generation
-* validation setup
-* duplicate email checking
 
-### Current APIs
+### Status
+
+✅ Completed
+
+---
+
+## Phase 3 — Authorization System
+
+### Features
+
+* JWT middleware
+* Protected routes
+* Token validation
+
+### Status
+
+✅ Completed
+
+---
+
+## Phase 4 — User Profile System
+
+### Features
+
+* Get profile API
+* Update profile API
+* Protected profile routes
+
+### Status
+
+✅ Completed
+
+---
+
+## Phase 5 — Skill Matching APIs
+
+### Features
+
+* Get all users
+* Search users by skill
+* Skill filtering
+
+### Status
+
+✅ Completed
+
+---
+
+## Phase 6 — Swap Request System
+
+### Features
+
+* Send request
+* Received requests
+* Sent requests
+* Accept/reject request
+* Delete request
+
+### Status
+
+✅ Completed
+
+---
+
+## Phase 7 — API Testing Architecture
+
+### Features
+
+* Postman collections
+* Environment variables
+* Multi-user testing
+* Token management
+
+### Status
+
+✅ Completed
+
+---
+
+# 🚀 Pending Phases
+
+| Phase    | Module                  | Status         |
+| -------- | ----------------------- | -------------- |
+| Phase 8  | Chat System             | 🟡 In Progress |
+| Phase 9  | Frontend Authentication | ⏳ Pending      |
+| Phase 10 | Frontend Dashboard      | ⏳ Pending      |
+| Phase 11 | Frontend Skill System   | ⏳ Pending      |
+| Phase 12 | Frontend Request System | ⏳ Pending      |
+| Phase 13 | Frontend Chat UI        | ⏳ Pending      |
+| Phase 14 | Smart Matching Logic    | ⏳ Pending      |
+| Phase 15 | Notifications           | ⏳ Pending      |
+| Phase 16 | Admin System            | ⏳ Pending      |
+| Phase 17 | Deployment              | ⏳ Pending      |
+
+---
+
+# 📂 Backend Folder Structure
+
+server/
+├── src/
+│ ├── config/
+│ ├── controllers/
+│ ├── middleware/
+│ ├── models/
+│ ├── routes/
+│ └── server.js
+
+---
+
+# 📂 Frontend Folder Structure
+
+client/
+├── src/
+│ ├── api/
+│ ├── assets/
+│ ├── components/
+│ ├── pages/
+│ ├── routes/
+│ ├── services/
+│ └── App.jsx
+
+---
+
+# 📌 Current APIs Built
+
+## Auth APIs
 
 * POST /api/auth/signup
 * POST /api/auth/login
 
----
+## User APIs
 
-# Current Frontend Work
+* GET /api/users/profile
+* PUT /api/users/profile
 
-## Phase 7 — Authentication UI (In Progress)
+## Skill APIs
 
-### Completed
+* GET /api/skills/users
+* GET /api/skills/search
 
-* Login form
-* Signup form
-* useState form handling
-* service layer setup
-* API integration structure
-* token storage
+## Request APIs
 
-### Pending
-
-* controlled inputs
-* validation
-* reusable components
-* loading state
-* error handling
-* redirect flow
-* navigation links
+* POST /api/requests/send
+* GET /api/requests/sent
+* GET /api/requests/received
+* PUT /api/requests/status/:id
+* DELETE /api/requests/:id
 
 ---
 
-# Current Backend Work
-
-## Phase 8 — Protected Routes + Auth Middleware (In Progress)
-
-### Pending
-
-* auth middleware
-* JWT verification middleware
-* protected routes
-* role-based access structure
-
----
-
-# Current System Design Work
-
-## Phase 9 — ER Model & Database Design (Starting)
-
-### Planned Entities
+# 📌 Current Database Models
 
 * User
-* Skill
-* SkillRequest
-* Match
-* Review
-* Notification
-* Chat
-* Message
-
-### Pending
-
-* ER diagram
-* relationships
-* cardinality planning
-* schema structure planning
+* SwapRequest
+* Message (Planned)
 
 ---
 
-# Upcoming Phases
+# 📌 Git Milestones
 
-## Frontend
-
-* Home page UI design
-* dashboard UI
-* profile UI
-* skill management UI
-
-## Backend
-
-* profile APIs
-* skill APIs
-* request APIs
-* chat APIs
-* notification APIs
+| Commit        | Description            |
+| ------------- | ---------------------- |
+| Initial Setup | Backend initialization |
+| Auth System   | Signup/Login/JWT       |
+| Skill APIs    | Skill search system    |
+| Request APIs  | Swap request system    |
 
 ---
 
-# Installed Backend Packages
+# 📌 Next Immediate Task
 
-* express
-* mongoose
-* bcryptjs
-* jsonwebtoken
-* validator
-* cors
-* dotenv
-* nodemon
+Implement:
+
+* Message model
+* Chat APIs
+* Socket rooms
+* Real-time events
 
 ---
 
-# Installed Frontend Packages
+# 📌 Important Notes
 
-* react-router-dom
-* axios
-
----
-
-# Current Priority
-
-1. ER Model & Database Design
-2. Protected Routes Middleware
-3. Authentication UI Completion
-4. Home Page Development
+* Use Postman collections properly
+* Save all APIs after testing
+* Maintain separate user tokens
+* Never expose passwords in API responses
+* Use `.select("-password")` whenever returning user data

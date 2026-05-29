@@ -17,12 +17,6 @@ const messageSchema = new mongoose.Schema(
     message: {
       type: String,
       required: true,
-      trim: true,
-    },
-
-    isRead: {
-      type: Boolean,
-      default: false,
     },
   },
   {
@@ -30,7 +24,4 @@ const messageSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model(
-  "Message",
-  messageSchema
-);
+module.exports = mongoose.model("Message", messageSchema);
