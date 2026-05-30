@@ -28,10 +28,19 @@ const getMessages = async (req, res) => {
 
     const messages = await Message.find({
       $or: [
-        { sender: req.user._id, receiver: userId },
-        { sender: userId, receiver: req.user._id },
-      ],
-    }).sort({ createdAt: 1 });
+       {
+         sender: req.user._id,
+         receiver: userId,
+       },
+       {
+         sender: userId,
+         receiver: req.user._id,
+       },
+     ],
+    })
+      .populate("sender", "name email")
+      .populate("receiver", "name email")
+      .sort({ createdAt: 1 });
 
     res.status(200).json(messages);
   } catch (error) {
