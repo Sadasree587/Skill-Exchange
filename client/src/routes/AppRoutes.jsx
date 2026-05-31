@@ -7,6 +7,9 @@ import {
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
+import Dashboard from "../pages/Dashboard";
+
+import ProtectedRoute from "./ProtectedRoute";
 
 function AppRoutes() {
 
@@ -28,6 +31,15 @@ function AppRoutes() {
         <Route
           path="/signup"
           element={<Signup />}
+        />
+
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
         />
 
       </Routes>

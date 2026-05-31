@@ -1,7 +1,14 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { signupUser } from "../../services/authService";
 
+import InputField from "../common/InputField";
+import Button from "../common/Button";
+
 function SignupForm() {
+
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -9,6 +16,8 @@ function SignupForm() {
     password: "",
     role: "learner",
   });
+
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -18,50 +27,84 @@ function SignupForm() {
   };
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
+
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.password
+    ) {
+      alert("All fields are required");
+      return;
+    }
+
+    if (formData.password.length < 6) {
+      alert("Password must be at least 6 characters");
+      return;
+    }
 
     try {
 
-      const data = await signupUser(formData);
+      setLoading(true);
 
-      console.log(data);
+      await signupUser(formData);
 
       alert("Signup Successful");
 
+      navigate("/login");
+
     } catch (error) {
 
-      console.log(error);
+        console.log(error);
 
-      alert("Signup Failed");
+       console.log(error.response);
+
+       console.log(error.response?.data);
+
+       alert(
+        error?.response?.data?.message ||
+        "Signup Failed"
+       );
+
+      }
+
+     finally {
+
+      setLoading(false);
 
     }
   };
 
   return (
+
     <form onSubmit={handleSubmit}>
 
-      <input
+      <InputField
         type="text"
         name="name"
         placeholder="Name"
+        value={formData.name}
         onChange={handleChange}
       />
 
       <br />
 
-      <input
+      <InputField
         type="email"
         name="email"
         placeholder="Email"
+        value={formData.email}
         onChange={handleChange}
       />
 
       <br />
 
-      <input
+      <InputField
         type="password"
         name="password"
         placeholder="Password"
+        value={formData.password}
         onChange={handleChange}
       />
 
@@ -69,6 +112,7 @@ function SignupForm() {
 
       <select
         name="role"
+        value={formData.role}
         onChange={handleChange}
       >
         <option value="learner">
@@ -86,11 +130,14 @@ function SignupForm() {
 
       <br />
 
-      <button type="submit">
-        Signup
-      </button>
+      <Button
+        type="submit"
+        text={loading ? "Signing Up..." : "Signup"}
+        disabled={loading}
+      />
 
     </form>
+
   );
 }
 

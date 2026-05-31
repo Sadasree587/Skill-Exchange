@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { loginUser } from "../../services/authService";
 
 import InputField from "../common/InputField";
@@ -6,10 +8,14 @@ import Button from "../common/Button";
 
 function LoginForm() {
 
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -21,11 +27,16 @@ function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!formData.email || !formData.password) {
+      alert("All fields are required");
+      return;
+    }
+
     try {
 
-      const data = await loginUser(formData);
+      setLoading(true);
 
-      console.log(data);
+      const data = await loginUser(formData);
 
       localStorage.setItem(
         "token",
@@ -34,24 +45,32 @@ function LoginForm() {
 
       alert("Login Successful");
 
+      navigate("/dashboard");
+
     } catch (error) {
 
-      console.log(error);
+      alert(
+        error?.response?.data?.message ||
+        "Login Failed"
+      );
 
-      alert("Login Failed");
+    } finally {
+
+      setLoading(false);
 
     }
   };
 
   return (
+
     <form onSubmit={handleSubmit}>
 
       <InputField
-         type="email"
-         name="email"
-         placeholder="Email"
-         value={formData.email}
-         onChange={handleChange}
+        type="email"
+        name="email"
+        placeholder="Email"
+        value={formData.email}
+        onChange={handleChange}
       />
 
       <br />
@@ -67,10 +86,13 @@ function LoginForm() {
       <br />
 
       <Button
-       type="submit"
-       text="Login"
+        type="submit"
+        text={loading ? "Logging In..." : "Login"}
+        disabled={loading}
       />
+
     </form>
+
   );
 }
 
