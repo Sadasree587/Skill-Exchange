@@ -1,26 +1,12 @@
 import api from "../api/axios";
 
-const getHeaders = () => {
-
-  const token = localStorage.getItem("token");
+const getAuthConfig = () => {
 
   return {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   };
-
-};
-
-export const sendSwapRequest = async (data) => {
-
-  const response = await api.post(
-    "/requests/send",
-    data,
-    getHeaders()
-  );
-
-  return response.data;
 
 };
 
@@ -28,22 +14,20 @@ export const getReceivedRequests = async () => {
 
   const response = await api.get(
     "/requests/received",
-    getHeaders()
+    getAuthConfig()
   );
 
   return response.data;
-
 };
 
 export const getSentRequests = async () => {
 
   const response = await api.get(
     "/requests/sent",
-    getHeaders()
+    getAuthConfig()
   );
 
   return response.data;
-
 };
 
 export const updateRequestStatus = async (
@@ -52,15 +36,18 @@ export const updateRequestStatus = async (
 ) => {
 
   const response = await api.put(
+
     `/requests/status/${requestId}`,
+
     {
       status,
     },
-    getHeaders()
+
+    getAuthConfig()
+
   );
 
   return response.data;
-
 };
 
 export const deleteRequest = async (
@@ -68,8 +55,34 @@ export const deleteRequest = async (
 ) => {
 
   const response = await api.delete(
+
     `/requests/${requestId}`,
-    getHeaders()
+
+    getAuthConfig()
+
+  );
+
+  return response.data;
+};
+
+export const sendSwapRequest = async (
+  receiverId,
+  offeredSkill,
+  wantedSkill
+) => {
+
+  const response = await api.post(
+
+    "/requests/send",
+
+    {
+      receiverId,
+      offeredSkill,
+      wantedSkill,
+    },
+
+    getAuthConfig()
+
   );
 
   return response.data;

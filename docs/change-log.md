@@ -187,3 +187,26 @@ Modified:
 Fixed:
 
 * Skill search reset behavior
+
+## Version 0.10.0
+
+Date: 2026-06-04
+
+Added:
+
+* Frontend Request Management
+* RequestCard Component
+* Accept Request UI
+* Reject Request UI
+* Delete Request UI
+* Loading and Error States
+
+Modified:
+
+* Requests Page
+* Dashboard Navigation
+
+Fixed:
+
+* Request refresh after status update
+* Empty state rendering

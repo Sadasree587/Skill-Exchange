@@ -13,7 +13,7 @@ function RequestCard({
 
       <h2 className="text-xl font-bold mb-2">
 
-        {request.sender?.name}
+        {request.sender?.name || "Unknown User"}
 
       </h2>
 
@@ -37,35 +37,56 @@ function RequestCard({
 
         <strong>Status:</strong>
         {" "}
-        {request.status}
+
+        <span
+          className={
+            request.status === "accepted"
+              ? "text-green-600 font-bold"
+              : request.status === "rejected"
+              ? "text-red-600 font-bold"
+              : "text-yellow-600 font-bold"
+          }
+        >
+
+          {request.status}
+
+        </span>
 
       </p>
 
       <div className="flex gap-3">
 
-        <button
-          onClick={() =>
-            onAccept(request._id)
-          }
-          className="bg-green-500 text-white px-4 py-2 rounded-lg"
-        >
-          Accept
-        </button>
+        {request.status === "pending" && (
 
-        <button
-          onClick={() =>
-            onReject(request._id)
-          }
-          className="bg-yellow-500 text-white px-4 py-2 rounded-lg"
-        >
-          Reject
-        </button>
+          <>
+
+            <button
+              onClick={() =>
+                onAccept(request._id)
+              }
+              className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
+            >
+              Accept
+            </button>
+
+            <button
+              onClick={() =>
+                onReject(request._id)
+              }
+              className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition"
+            >
+              Reject
+            </button>
+
+          </>
+
+        )}
 
         <button
           onClick={() =>
             onDelete(request._id)
           }
-          className="bg-red-500 text-white px-4 py-2 rounded-lg"
+          className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
         >
           Delete
         </button>
