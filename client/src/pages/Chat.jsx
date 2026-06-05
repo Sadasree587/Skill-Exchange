@@ -19,6 +19,10 @@ import {
 } from "../services/skillService";
 
 import {
+  getSmartMatches,
+} from "../services/matchService";
+
+import {
 
   getMessages,
   sendMessage,
@@ -29,6 +33,7 @@ function Chat() {
 
   const [users, setUsers] =
     useState([]);
+
 
   const [selectedUser,
     setSelectedUser] =
@@ -50,12 +55,15 @@ function Chat() {
     setError] =
     useState("");
 
-  const currentUserId =
+  const currentUser =
     JSON.parse(
       localStorage.getItem(
         "user"
       )
-    )?._id;
+    );
+
+  const currentUserId =
+    currentUser?._id;
 
   useEffect(() => {
 
@@ -83,7 +91,19 @@ function Chat() {
         const data =
           await getAllUsers();
 
-        setUsers(data);
+        const sortedUsers =
+          getSmartMatches(
+            currentUser,
+            data.filter(
+              (user) =>
+                user._id !==
+                currentUserId
+            )
+          );
+
+        setUsers(
+          sortedUsers
+        );
 
       } catch (error) {
 
@@ -267,26 +287,38 @@ function Chat() {
 
                   selectedUser
 
-                    ? messages.map(
-                        (message) => (
+                    ? messages.length > 0
 
-                          <MessageBubble
+                      ? messages.map(
+                          (message) => (
 
-                            key={
-                              message._id
-                            }
+                            <MessageBubble
 
-                            message={
-                              message
-                            }
+                              key={
+                                message._id
+                              }
 
-                            currentUserId={
-                              currentUserId
-                            }
+                              message={
+                                message
+                              }
 
-                          />
+                              currentUserId={
+                                currentUserId
+                              }
 
+                            />
+
+                          )
                         )
+
+                      : (
+
+                        <div className="text-gray-500">
+
+                          No messages yet.
+
+                        </div>
+
                       )
 
                     : (
@@ -327,6 +359,21 @@ function Chat() {
 
                     className="flex-1 border rounded-lg px-4 py-2"
 
+                    onKeyDown={(
+                      e
+                    ) => {
+
+                      if (
+                        e.key ===
+                        "Enter"
+                      ) {
+
+                        handleSendMessage();
+
+                      }
+
+                    }}
+
                   />
 
                   <button
@@ -335,7 +382,7 @@ function Chat() {
                       handleSendMessage
                     }
 
-                    className="bg-blue-500 text-white px-6 rounded-lg"
+                    className="bg-blue-500 text-white px-6 rounded-lg hover:bg-blue-600"
 
                   >
 

@@ -13,6 +13,7 @@ const userRoutes = require("./routes/userRoutes");
 const skillRoutes = require("./routes/skillRoutes");
 const requestRoutes = require("./routes/requestRoutes");
 const messageRoutes = require("./routes/messageRoutes");
+const matchRoutes = require("./routes/matchRoutes");
 
 // MESSAGE MODEL
 const Message = require("./models/Message");
@@ -47,6 +48,8 @@ app.use("/api/skills", skillRoutes);
 app.use("/api/requests", requestRoutes);
 
 app.use("/api/messages", messageRoutes);
+
+app.use("/api/matches", matchRoutes);
 
 // TEST ROUTE
 app.get("/", (req, res) => {

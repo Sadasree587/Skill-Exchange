@@ -3,6 +3,12 @@ import { useEffect, useState } from "react";
 import DashboardLayout from "../layouts/DashboardLayout";
 import UserCard from "../components/skills/UserCard";
 
+import MatchCard from "../components/skills/MatchCard";
+
+import {
+  getSmartMatches,
+} from "../services/matchService";
+
 import {
   getAllUsers,
   searchUsersBySkill,
@@ -15,6 +21,7 @@ import {
 function Skills() {
 
   const [users, setUsers] = useState([]);
+  const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -32,6 +39,11 @@ function Skills() {
         const data = await getAllUsers();
 
         setUsers(data);
+
+      const smartMatches = 
+        await getSmartMatches();
+
+      setMatches(smartMatches);
 
       } catch (error) {
 
@@ -165,6 +177,48 @@ function Skills() {
           Discover Skills
 
         </h1>
+        
+        {
+
+          matches.length > 0 && (
+
+            <div
+              className="
+              bg-gradient-to-r
+              from-blue-500
+              to-purple-500
+              text-white
+              rounded-xl
+              p-6
+              mb-6
+            "
+            >
+
+              <h2 className="text-3xl font-bold">
+
+               🎯 Your Best Match
+
+              </h2>
+
+              <p className="mt-2 text-lg">
+
+                {matches[0].name}
+
+              </p>
+
+              <p>
+
+                Compatibility:
+                {" "}
+                {matches[0].matchScore}%
+
+              </p>
+
+            </div>
+
+          )
+
+        }
 
         <div className="flex gap-3 mb-6">
 
@@ -186,6 +240,55 @@ function Skills() {
           </button>
 
         </div>
+        
+        {
+
+          matches.length > 0 && (
+
+            <>
+
+              <h2 className="text-3xl font-bold mb-6">
+
+                ⭐ Recommended Matches
+
+              </h2>
+
+              <div
+                className="
+                grid
+                grid-cols-1
+                md:grid-cols-2
+                lg:grid-cols-3
+                gap-6
+                mb-10
+              "
+              >
+
+                {
+
+                  matches
+                    .slice(0, 3)
+                    .map((user) => (
+
+                      <MatchCard
+
+                        key={user._id}
+
+                        user={user}
+
+                      />
+
+                    ))
+
+                }
+
+              </div>
+
+            </>
+
+          )
+
+        }
 
         {
 

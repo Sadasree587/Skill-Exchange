@@ -6,6 +6,10 @@ function ChatUserCard({
 
 }) {
 
+  const isSelected =
+    selectedUser?._id ===
+    user._id;
+
   return (
 
     <div
@@ -23,14 +27,14 @@ function ChatUserCard({
         border
 
         ${
-          selectedUser?._id ===
-          user._id
+          isSelected
 
-            ? "bg-blue-500 text-white border-blue-500"
+            ? "bg-blue-500 text-white border-blue-500 scale-[1.02]"
 
             : "bg-white hover:bg-gray-100 border-gray-200"
         }
       `}
+
     >
 
       <div className="flex items-center gap-3">
@@ -50,7 +54,7 @@ function ChatUserCard({
           👤
         </div>
 
-        <div>
+        <div className="flex-1">
 
           <h2 className="font-bold">
 
@@ -62,8 +66,7 @@ function ChatUserCard({
             className={`
               text-sm
               ${
-                selectedUser?._id ===
-                user._id
+                isSelected
                   ? "text-blue-100"
                   : "text-gray-500"
               }
@@ -72,6 +75,25 @@ function ChatUserCard({
 
             {user.location ||
               "Unknown"}
+
+          </p>
+
+          <p
+            className={`
+              text-xs
+              mt-1
+              font-medium
+              ${
+                isSelected
+                  ? "text-blue-100"
+                  : "text-blue-600"
+              }
+            `}
+          >
+
+            🎯 Match Score:
+            {" "}
+            {user.matchScore || 0}
 
           </p>
 
