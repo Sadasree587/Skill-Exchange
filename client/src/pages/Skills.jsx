@@ -15,6 +15,10 @@ import {
 } from "../services/skillService";
 
 import {
+  getProfile,
+} from "../services/userService";
+
+import {
   sendSwapRequest,
 } from "../services/requestService";
 
@@ -36,14 +40,21 @@ function Skills() {
 
       try {
 
-        const data = await getAllUsers();
+        const currentUser =
+  await getProfile();
 
-        setUsers(data);
+const data =
+  await getAllUsers();
 
-      const smartMatches = 
-        await getSmartMatches();
+setUsers(data);
 
-      setMatches(smartMatches);
+const smartMatches =
+  getSmartMatches(
+    currentUser,
+    data
+  );
+
+setMatches(smartMatches);
 
       } catch (error) {
 

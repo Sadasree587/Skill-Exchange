@@ -36,8 +36,14 @@ export const calculateMatchScore = (
 
 export const getSmartMatches = (
   currentUser,
-  users
+  users = []
 ) => {
+
+  if (
+    !Array.isArray(users)
+  ) {
+    return [];
+  }
 
   return users
 
