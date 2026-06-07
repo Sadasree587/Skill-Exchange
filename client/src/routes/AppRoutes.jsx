@@ -12,6 +12,7 @@ import Profile from "../pages/Profile";
 import Skills from "../pages/Skills";
 import Requests from "../pages/Requests";
 import Chat from "../pages/Chat";
+import Notifications from "../pages/Notifications";
 
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -82,6 +83,15 @@ function AppRoutes() {
           }
         />
         
+        <Route
+          path="/notifications"
+          element={
+            <ProtectedRoute>
+             <Notifications />
+            </ProtectedRoute>
+          }
+        />
+
       </Routes>
 
     </BrowserRouter>

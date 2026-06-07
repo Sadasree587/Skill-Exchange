@@ -28,6 +28,11 @@ function Sidebar() {
       icon: "💬",
       label: "Chat",
     },
+    {
+      path: "/notifications",
+      icon: "🔔",
+      label: "Notifications",
+    },
   ];
 
   return (
