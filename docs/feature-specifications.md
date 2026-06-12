@@ -32,3 +32,20 @@ Failure Cases:
 
 Related APIs:
 POST /auth/signup
+
+Feature:
+Notification System
+
+Actors:
+Authenticated Users
+
+Inputs:
+Swap Request Events
+
+Outputs:
+Unread Notifications
+
+APIs:
+GET /notifications
+PUT /notifications/:id/read
+PUT /notifications/read-all

@@ -210,3 +210,45 @@ Fixed:
 
 * Request refresh after status update
 * Empty state rendering
+
+## Version 1.1.0
+
+Date: 2026-06-05
+
+Added:
+
+* Edit Profile Modal
+* Profile Update API Integration
+* Live UI Update after Save
+* Skill Array Sanitization
+
+Modified:
+
+* Profile Page
+* userService.js
+
+Fixed:
+
+* Empty skill entries being saved
+* Infinite loading edge case handling
+
+## Version: 1.2.0
+
+Added:
+- Notification model
+- Notification APIs
+- Notification page
+- Notification service
+- Mark read feature
+- Mark all read feature
+- Navbar notification integration
+
+Modified:
+- Request controller
+- AppRoutes
+- Sidebar/Navbar
+
+## Version 1.3.0
+
+Added:
+- User admin role support

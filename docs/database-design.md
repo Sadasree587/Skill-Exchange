@@ -64,3 +64,10 @@ User
 User
 ↳ Message.sender
 ↳ Message.receiver
+
+## User
+
++ isAdmin (Boolean)
+
+Purpose:
+Role-based authorization for Admin Panel.
