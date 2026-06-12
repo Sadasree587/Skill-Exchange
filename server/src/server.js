@@ -14,6 +14,8 @@ const skillRoutes = require("./routes/skillRoutes");
 const requestRoutes = require("./routes/requestRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 const matchRoutes = require("./routes/matchRoutes");
+const notificationRoutes = require("./routes/notificationRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 
 // MESSAGE MODEL
 const Message = require("./models/Message");
@@ -40,16 +42,13 @@ app.use(express.json());
 
 // ROUTES
 app.use("/api/auth", authRoutes);
-
 app.use("/api/users", userRoutes);
-
 app.use("/api/skills", skillRoutes);
-
 app.use("/api/requests", requestRoutes);
-
 app.use("/api/messages", messageRoutes);
-
 app.use("/api/matches", matchRoutes);
+app.use("/api/notifications", notificationRoutes);
+app.use("/api/admin", adminRoutes);
 
 // TEST ROUTE
 app.get("/", (req, res) => {
