@@ -107,11 +107,20 @@ function Profile() {
 
   };
 
+  const sanitizeInput = (value) => {
+
+    return value
+      .replace(/</g, "")
+      .replace(/>/g, "")
+      .trim();
+
+  };
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]:
-        e.target.value,
+        sanitizeInput(e.target.value),
     });
 
     setIsDirty(true);

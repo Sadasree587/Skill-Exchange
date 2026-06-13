@@ -13,6 +13,9 @@ import Skills from "../pages/Skills";
 import Requests from "../pages/Requests";
 import Chat from "../pages/Chat";
 import Notifications from "../pages/Notifications";
+import Admin from "../pages/Admin";
+import NotFound from "../pages/NotFound";
+import AdminRoute from "./AdminRoute";
 
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -92,6 +95,20 @@ function AppRoutes() {
           }
         />
 
+        <Route
+          path="/admin"
+          element={
+           <AdminRoute>
+             <Admin />
+           </AdminRoute>
+          }
+        />
+ 
+        <Route
+          path="*"
+          element={<NotFound />}
+        />
+        
       </Routes>
 
     </BrowserRouter>

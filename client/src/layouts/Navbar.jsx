@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { 
+  Link,
+  useNavigate,
+ } from "react-router-dom";
 
 import { getProfile } from "../services/userService";
 
@@ -8,6 +11,11 @@ function Navbar() {
   const navigate = useNavigate();
 
   const [user, setUser] = useState(null);
+
+  const loggedInUser =
+  JSON.parse(
+    localStorage.getItem("user")
+  );
 
   useEffect(() => {
 
@@ -32,11 +40,13 @@ function Navbar() {
 
   const handleLogout = () => {
 
-    localStorage.clear();
+    localStorage.removeItem("token");
+
+    localStorage.removeItem("user");
 
     navigate("/login");
   };
-
+  
   return (
 
     <nav
@@ -80,7 +90,16 @@ function Navbar() {
           alignItems: "center",
         }}
       >
+      
+      {loggedInUser?.role === "admin" && (
 
+        <Link to="/admin">
+
+          Admin Panel
+
+         </Link>
+
+      )}
         <span>🔔</span>
 
         <span>
