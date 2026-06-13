@@ -154,6 +154,31 @@ const deleteRequest = async (req, res) => {
 
 };
 
+const makeAdmin = async (req, res) => {
+
+  try {
+
+    const user = await User.findByIdAndUpdate(
+      req.params.id,
+      {
+        role: "admin",
+      },
+      {
+        new: true,
+      }
+    );
+
+    res.status(200).json(user);
+
+  } catch (error) {
+
+    res.status(500).json({
+      message: error.message,
+    });
+
+  }
+
+};
 
 module.exports = {
 
@@ -162,4 +187,6 @@ deleteUser,
 getAllRequests,
 deleteRequest,
 getStats,
+makeAdmin,
+
 };

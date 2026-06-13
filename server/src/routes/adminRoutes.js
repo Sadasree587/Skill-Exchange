@@ -20,6 +20,8 @@ const {
 
   getStats,
 
+  makeAdmin,
+
 } = require(
   "../controllers/adminController"
 );
@@ -57,6 +59,13 @@ router.get(
   protect,
   adminOnly,
   getStats
+);
+
+router.put(
+  "/make-admin/:id",
+  protect,
+  adminOnly,
+  makeAdmin
 );
 
 module.exports =
