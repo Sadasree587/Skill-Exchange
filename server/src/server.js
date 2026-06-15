@@ -1,3 +1,5 @@
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
 const express = require("express");
 const cors = require("cors");
 const http = require("http");
@@ -8,6 +10,7 @@ require("dotenv").config();
 const connectDB = require("./config/db");
 
 // ROUTES
+
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const skillRoutes = require("./routes/skillRoutes");
@@ -21,6 +24,23 @@ const adminRoutes = require("./routes/adminRoutes");
 const Message = require("./models/Message");
 
 const app = express();
+
+const apiLimiter = rateLimit({
+
+  windowMs: 15 * 60 * 1000,
+
+  max: 100,
+
+  message: {
+    message:
+      "Too many requests. Please try again later.",
+  },
+
+  standardHeaders: true,
+
+  legacyHeaders: false,
+
+});
 
 const server = http.createServer(app);
 
@@ -36,8 +56,9 @@ const io = new Server(server, {
 connectDB();
 
 // MIDDLEWARES
+app.use(helmet());
 app.use(cors());
-
+app.use(apiLimiter);
 app.use(express.json());
 
 // ROUTES
